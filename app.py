@@ -11,6 +11,7 @@ load_dotenv()
 # Initialize Flask app and configure CORS
 app = Flask(__name__)
 CORS(app)
+service_port=os.getenv('PORT') or 5000
 
 # API configuration
 ENRICHMENT_API_URL = 'https://api.coresignal.com/cdapi/v1/professional_network/company/collect/'
@@ -51,4 +52,4 @@ def enrich_company():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=service_port)
